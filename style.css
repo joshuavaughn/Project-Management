@@ -15,117 +15,115 @@
 /*************************************************
                     PART 2
 *************************************************/
-
-
 .navbar-brand .logo{
-    height: 40px;
-    width: auto;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .material-icons-outlined {
-    vertical-align: middle;
-    line-height: 1px;
-  }
-  
-  .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1030; 
-    background-color: #ffffff; 
-    transition: background-color 0.3s, box-shadow 0.3s; 
-  }
-  
-  .navbar-brand > .material-icons-outlined {
-    font-size: 40px;
-  }
+  vertical-align: middle;
+  line-height: 1px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030; 
+  background-color: #ffffff; 
+  transition: background-color 0.3s, box-shadow 0.3s; 
+}
+
+.navbar-brand > .material-icons-outlined {
+  font-size: 40px;
+}
 
 #background-image {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    overflow: hidden;
-  }
-  
-  #background-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  .search-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);  
-    background-color: rgba(209, 76, 76, 0.7); 
-    border-radius: 5px;
-    display: flex;  
-    align-items: center;  
-    justify-content: flex-start;  
-  }
-  
-  .search-container label {
-    margin-right: 10px; 
-    color: red; 
-  }
-  
-  .search-container input {
-    padding: 10px;
-    width: 250px; 
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    outline: none;
-  }
-  
-  .search-container input:focus {
-    border-color: #ff7e5f;  
-  }
-  
-  .material-symbols-outlined {
-    font-size: 24px;  
-    color: #333; 
-  }
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+#background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.search-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
+  background-color: rgba(209, 76, 76, 0.7); 
+  border-radius: 5px;
+  display: flex;  
+  align-items: center;  
+  justify-content: flex-start;  
+}
+
+.search-container label {
+  margin-right: 10px; 
+  color: red; 
+}
+
+.search-container input {
+  padding: 10px;
+  width: 250px; 
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.search-container input:focus {
+  border-color: #ff7e5f;  
+}
+
+.material-symbols-outlined {
+  font-size: 24px;  
+  color: #333; 
+}
 
 body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%; 
+margin: 0;
+padding: 0;
+height: 100%; 
 }
 
 #On-Going-Orders {
-  display: flex; 
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center; 
-  height: 100vh; 
-  padding-top: 50px;
-  padding-left: 30px;
-  padding-right: 30px;
-  background-color: #ffffff; 
-  box-sizing: border-box; 
+display: flex; 
+flex-direction: column;
+align-items: center; 
+justify-content: center; 
+height: 100vh; 
+padding-top: 50px;
+padding-left: 30px;
+padding-right: 30px;
+background-color: #ffffff; 
+box-sizing: border-box; 
 }
 
 
 #On-Going-Orders h1 {
-  font-size: 2rem; 
-  font-weight: bold;
-  color: #333; 
-  margin: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
-  text-align: left; 
+font-size: 2rem; 
+font-weight: bold;
+color: #333; 
+margin: 0;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+text-align: left; 
 }
 
 
 
 #card-container {
-    display: grid;
+  display: grid;
     grid-template-columns: repeat(2, 1fr); 
     gap: 20px; 
     padding: 20px;
@@ -235,28 +233,93 @@ body, html {
 /*************************************************
                     PART 4
 *************************************************/
-.form-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 50px auto;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+
+/*nav*/
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 50px;
+  background-color:#f69494;
+  margin-top: 0%;
+  background-image: url('/sources/images/header.png'); 
+  background-size:cover;
+  background-repeat: no-repeat; 
+  height: 120px; 
 }
 
-.form-container .form-left {
-    flex: 1;
-    padding-right: 20px;
-  }
-  
-  .form-container .form-right {
-    flex: 1;
-    padding-left: 20px;
-  }  
+.logo-search {
+  display: flex;
+  align-items: center;
+  gap: 100%;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.search-input {
+  padding-bottom: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #ff0000;
+}
+
+.search-icon {
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  padding-right: 70px;
+  padding-bottom: 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fffdfd;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #ff4500;
+}
+
+/*check out form*/
+.form-container {
+  max-width: 700px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(250, 92, 92, 0.1);
+}
 
 .form-container h1 {
-  text-align: center;
+  text-align: left;
   color: #333333;
   margin-bottom: 20px;
   font-size: 28px;
@@ -265,12 +328,12 @@ body, html {
 .form-container p {
   text-align: left;
   color: #666666;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-size: 16px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .form-group label {
@@ -284,7 +347,7 @@ body, html {
 .form-group input {
   width: 100%;
   padding: 10px;
-  font-size: 12px;
+  font-size: 14px;
   border: 1px solid #cccccc;
   border-radius: 10px;
   box-sizing: border-box;
@@ -292,20 +355,192 @@ body, html {
 }
 
 .form-group input:focus {
-  border-color: #ff2e2e;
+  border-color: #ff7979;
   outline: none;
-  box-shadow: 0 0 6px rgba(201, 42, 42, 0.5);
+  box-shadow: 0 0 6px rgba(255, 171, 171, 0.5);
 }
 
 .form-row {
   display: flex;
-  gap: 15px;
+  gap: 30px;
 }
 
 .form-row .form-group {
   flex: 1;
 }
- 
+
+.additional-info textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  height: 150px; 
+  resize: vertical; 
+}
+
+.additional-info textarea:focus {
+  border-color: #ff7979;
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 171, 171, 0.5);
+}
+
+.additional-info label {
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.additional-info p {
+  margin-bottom: 8px;
+  color: #666666;
+  font-size: 14px;
+}
+
+/*reciept*/
+
+.receipt-container {
+  max-width: 350px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(250, 92, 92, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333333;
+}
+
+.store-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.store-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.store-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+}
+
+.store-location {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+
+.payment-info h4 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.payment-info p {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.info-box {
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.place-order {
+  width: 100%;
+  background: #ff2e2e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.place-order:hover {
+  background: #e61e1e;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .logo-search {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .search-input {
+    width: 100%;
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .search-button {
+    right: 10px;
+    font-size: 16px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    padding-right: 0;
+    padding-bottom: 10;
+    text-align: center;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    width: 80px;
+  }
+
+  .search-input {
+    font-size: 10px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+
 /* *********
 before organization
 ******/
