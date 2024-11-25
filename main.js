@@ -46,7 +46,6 @@ function fetchMenu(divID) {
     });
 }
 
-
 let light_limit = -1;
 let heavy_limit = -1;
 
@@ -115,4 +114,69 @@ function fetchCheckboxes(section, divID, number) {
         }
     })
     .catch(err => console.error("Error fetching data:", err));
+}
+
+function submitOrder(divID) {
+    let THEFOODORDERS = [];
+    console.log('Light limit:', light_limit);
+    console.log('Heavy limit:', heavy_limit);
+    console.log('Div ID:', divID);
+
+    // Handle light category
+    if (light_limit > -1) {
+        const lightCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="light"]`);
+        let checkedLightCheckboxes = Array.from(lightCheckboxes).filter(cb => cb.checked);
+        const lightFoodOrders = [];
+        
+        checkedLightCheckboxes.forEach(cb => {
+            const quantityInput = cb.parentElement.querySelector('input[type="number"]'); // Find the corresponding quantity input
+            const quantity = parseInt(quantityInput.value, 10) || 0; // Parse the quantity (default to 0 if invalid)
+
+            // Add the checkbox value to the array `quantity` times
+            for (let i = 0; i < quantity; i++) {
+                lightFoodOrders.push(cb.value);
+            }
+        });
+
+        const lightCheckedCount = lightFoodOrders.length;
+
+        if (lightCheckedCount < light_limit) {
+            alert(`You need to select at least ${light_limit} "light" options. Currently selected: ${lightCheckedCount}`);
+            checkedLightCheckboxes = [];
+        } else {
+            console.log(`Light selection is valid. Currently selected: ${lightCheckedCount}`);
+            console.log('Selected Values:', lightFoodOrders);
+            THEFOODORDERS = THEFOODORDERS.concat(lightFoodOrders);
+        }
+    }
+    
+    // Handle light category
+    if (heavy_limit > -1) {
+        const heavyCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="heavy"]`);
+        let checkedHeavyCheckboxes = Array.from(heavyCheckboxes).filter(cb => cb.checked);
+        const heavyFoodOrders = [];
+        
+        checkedHeavyCheckboxes.forEach(cb => {
+            const HeavyquantityInput = cb.parentElement.querySelector('input[type="number"]'); // Find the corresponding quantity input
+            const quantity = parseInt(HeavyquantityInput.value, 10) || 0; // Parse the quantity (default to 0 if invalid)
+
+            // Add the checkbox value to the array `quantity` times
+            for (let i = 0; i < quantity; i++) {
+                heavyFoodOrders.push(cb.value);
+            }
+        });
+
+        const heavyCheckedCount = heavyFoodOrders.length;
+
+        if (heavyCheckedCount < heavy_limit) {
+            alert(`You need to select at least ${heavy_limit} "heavy" options. Currently selected: ${heavyCheckedCount}`);
+            checkedHeavyCheckboxes = [];
+        } else {
+            console.log(`Heavy selection is valid. Currently selected: ${heavyCheckedCount}`);
+            console.log('Selected Values:', heavyFoodOrders);
+            THEFOODORDERS = THEFOODORDERS.concat(heavyFoodOrders);
+        }
+    }
+
+    console.log('Final Food Orders:', THEFOODORDERS.join(', ')); 
 }
