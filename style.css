@@ -15,9 +15,7 @@
 /*************************************************
                     PART 2
 *************************************************/
-body{
-    padding-top: 60px;
-}
+
 
 .navbar-brand .logo{
     height: 40px;
@@ -92,80 +90,142 @@ body{
     font-size: 24px;  
     color: #333; 
   }
-  
-  
-  #card-container {
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; 
+}
+
+#On-Going-Orders {
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  height: 100vh; 
+  padding-top: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #ffffff; 
+  box-sizing: border-box; 
+}
+
+
+#On-Going-Orders h1 {
+  font-size: 2rem; 
+  font-weight: bold;
+  color: #333; 
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+  text-align: left; 
+}
+
+
+
+#card-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-    gap: 20px; /* space between cards */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
     padding: 20px;
-  }
-  
-  .cards {
-    background-color: #f69494;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .cards:hover {
-    transform: scale(1.05);
-  }
-  
-  .cards img {
-    max-width: 100%; /* Adjust the image to fit the card */
+}
+
+.cards {
+  background-color: #f69494;
+  border-radius: 100px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cards:hover {
+  transform: scale(1.05);
+}
+
+.food-name {
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #6d0101;
+  margin: 10px 0;
+  text-align: center;
+}
+
+
+.text-box {
+  width: 50%; 
+  padding: 8px;
+  font-size: 1rem;
+  background-color: #bb3030;
+  border-radius: 10px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.order-button {
+  background-color: #7c0505;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 50%;
+  font-size: 1rem;
+}
+
+.order-button:hover {
+  background-color: #fa2424;
+}
+
+
+.cards img {
+    max-width: 50%;
     height: auto;
     margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  
-  .cards h1,
-  .cards p {
-    color: #fff;
+    border-radius: 50px;
+}
+
+.cards p {
+    color: #ffffff;
     margin: 5px 0;
     text-align: center;
-  }
-  
-  .order-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .order-button:hover {
-    background-color: #45a049;
-  }
-  
-  @media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 768px) {
     #card-container {
-      grid-template-columns: 1fr; 
-      padding: 10px;
+        grid-template-columns: 1fr;
+        padding: 5px;
     }
-  
+
     .cards img {
-      max-width: 50%; 
+        max-width: 100%;
     }
+
+    .food-name{
+      font-size: 1.5rem;
+    }
+
+    .text-box {
+      font-size: 0.9rem;
+    }
+
+    .order-button {
+      font-size: 0.9rem;
+    }
+
+    #On-Going-Orders {
+      padding: 10px; /* Reduce padding on small screens */
   }
-  
-  @media screen and (max-width: 480px) {
-    #card-container {
-      grid-template-columns: 1fr; 
-      padding: 5px;
-    }
-  
-    .cards img {
-      max-width: 95%;
-    }
+
+  #On-Going-Orders h1 {
+      font-size: 1.7rem; 
   }
-   
+}
+
   
 /*************************************************
                     PART 3

@@ -6,42 +6,55 @@ let FULL_URL = ('https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq
 
 function fetchMenu(divID) {
     fetch(FULL_URL)
-    .then(res => res.text())
-    .then(rep => {        
-        let data = JSON.parse(rep.substr(47).slice(0,-2));
+        .then(res => res.text())
+        .then(rep => {        
+            let data = JSON.parse(rep.substr(47).slice(0, -2));
+            let card_container = document.getElementById(divID);
 
-        let card_container = document.getElementById(divID);
-        let num_row = data.table.rows.length;
+            // Explicitly set grid layout on the container
+            card_container.style.display = 'grid';
+            card_container.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            card_container.style.gap = '20px';
 
-        for (let i = 0; i < num_row; i++){
-            let NewCard = document.createElement('div');
-            NewCard.id = ("card" + i);
-            NewCard.className = "cards";
+            let num_row = data.table.rows.length;
 
-            // Add click event listener
-            NewCard.addEventListener('click', () => showFoodid(i, data, dat));
+            for (let i = 0; i < num_row; i++) {
+                let NewCard = document.createElement('div');
+                NewCard.id = "card" + i;
+                NewCard.className = "cards";
 
-            let food_name = document.createElement('h1');
-            food_name.textContent = data.table.rows[i].c[1].v || "Unamed Food";
+                NewCard.addEventListener('click', () => showFoodid(i, data));
 
-            let price = document.createElement('p');
-            price.textContent = data.table.rows[i].c[3].v || "Price not Available";
+                let food_name = document.createElement('div');
+                food_name.className = "food-name";
+                food_name.textContent = data.table.rows[i].c[1].v || "Unnamed Food";
 
-            let detail = document.createElement('p');
-            detail.textContent = data.table.rows[i].c[5].v || "No Details";
+                let price = document.createElement('p');
+                price.textContent = data.table.rows[i].c[3].v || "Price not Available";
+                price.type = "text";
+                price.className = "text-box";
+                price.placeholder = "Price";
+                price.value = data.table.rows[i].c[3].v || "0.00";
 
-            let picture = document.createElement("img");
-            let imageUrl = 'sources/images/chickenlollipop.jpg';
-            picture.src = imageUrl;
+                let detail = document.createElement('p');
+                detail.textContent = data.table.rows[i].c[5].v || "No Details";
+                detail.className = "text-box";
 
-            //append elements to the new card
-            NewCard.appendChild(picture);
-            NewCard.appendChild(food_name);
-            NewCard.appendChild(price);
-            NewCard.appendChild(detail);
+                let picture = document.createElement("img");
+                picture.src = 'sources/images/chickenlollipop.jpg'; 
+                picture.alt = data.table.rows[i].c[1].v || "Food Image";
 
-            //append new card to card container
-            card_container.appendChild(NewCard);
-        }
-    });
+                let orderButton = document.createElement("button");
+                orderButton.className = "order-button";
+                orderButton.textContent = "Order Now";
+
+                NewCard.appendChild(picture);
+                NewCard.appendChild(food_name);
+                NewCard.appendChild(price);
+                NewCard.appendChild(detail);
+                NewCard.appendChild(orderButton);
+
+                card_container.appendChild(NewCard);
+            }
+        });
 }
