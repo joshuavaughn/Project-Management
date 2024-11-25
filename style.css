@@ -175,28 +175,94 @@ body{
 /*************************************************
                     PART 4
 *************************************************/
-.form-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 50px auto;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+
+/*nav*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 50px;
+  background-color:#f69494;
+  margin-top: 0%;
 }
 
-.form-container .form-left {
-    flex: 1;
-    padding-right: 20px;
-  }
-  
-  .form-container .form-right {
-    flex: 1;
-    padding-left: 20px;
-  }  
+.logo-search {
+  display: flex;
+  align-items: center;
+  gap: 100%;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.search-input {
+  padding-bottom: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #666;
+}
+
+.search-icon {
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  padding-right: 70px;
+  padding-bottom: 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fffdfd;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #ff4500;
+}
+
+/*check out form*/
+.form-container {
+  max-width: 700px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
 
 .form-container h1 {
-  text-align: center;
+  text-align: left;
   color: #333333;
   margin-bottom: 20px;
   font-size: 28px;
@@ -205,12 +271,12 @@ body{
 .form-container p {
   text-align: left;
   color: #666666;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-size: 16px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .form-group label {
@@ -224,7 +290,7 @@ body{
 .form-group input {
   width: 100%;
   padding: 10px;
-  font-size: 12px;
+  font-size: 14px;
   border: 1px solid #cccccc;
   border-radius: 10px;
   box-sizing: border-box;
@@ -232,20 +298,134 @@ body{
 }
 
 .form-group input:focus {
-  border-color: #ff2e2e;
+  border-color: #ff7979;
   outline: none;
-  box-shadow: 0 0 6px rgba(201, 42, 42, 0.5);
+  box-shadow: 0 0 6px rgba(255, 171, 171, 0.5);
 }
 
 .form-row {
   display: flex;
-  gap: 15px;
+  gap: 30px;
 }
 
 .form-row .form-group {
   flex: 1;
 }
- 
+
+.additional-info textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  height: 150px; 
+  resize: vertical; 
+}
+
+.additional-info textarea:focus {
+  border-color: #ff7979;
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 171, 171, 0.5);
+}
+
+.additional-info label {
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.additional-info p {
+  margin-bottom: 8px;
+  color: #666666;
+  font-size: 14px;
+}
+
+/*reciept*/
+
+.receipt-container {
+  max-width: 350px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333333;
+}
+
+.store-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.store-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.store-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+}
+
+.store-location {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+
+.payment-info h4 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.payment-info p {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.info-box {
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.place-order {
+  width: 100%;
+  background: #ff2e2e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.place-order:hover {
+  background: #e61e1e;
+}
+
 /* *********
 before organization
 ******/
