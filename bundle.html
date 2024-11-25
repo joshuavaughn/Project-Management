@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/sources/jquery/jquery.nice-number.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="List">
+        <h1>Choose Your Order</h1>
+        <h2>Light</h2>
+        <div id="light-checklist"></div>
+        <h2>Heavy</h2>
+        <div id="heavy-checklist"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/sources/jquery/jquery.nice-number.js"></script>
+    <script>
+        fetchCheckboxes("light", "light-checklist", 2);
+        fetchCheckboxes("heavy", "heavy-checklist", 3);
+    </script>
+</body>
+</html>
