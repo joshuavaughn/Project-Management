@@ -229,6 +229,39 @@ text-align: left;
                     PART 3
 *************************************************/  
 
+.img-fluid {
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.btn-light {
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-light:hover {
+  background-color: #d97777;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.text-danger {
+  color: #f69494 !important;
+}
 
 /*************************************************
                     PART 4

@@ -3,46 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chicken Lollipop Bundles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
 </head>
 <body>
-
-    <nav>
-        <ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/order.html">Order</a></li>
-            <li><a href="/bundle.html">checklist</a></li>
-            <li><a href="/checkout.html">Check Out</a></li>
-        </ul>
+    
+    <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <img src="/sources/images/Andy'sIcon.jpg" alt="Logo" class="logo me-2" />
+                <span>Andy's Dinakdakan & Sisig Lechon</span>
+            </a>
+            <button 
+            type="button"
+            class="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarcontent"
+            aria-controls="navbarcontent"
+            aria-expanded="false"
+            aria-label="Toggle Navigation"
+            >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarcontent">
+                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="checkout.html">
+                            <span class="material-symbols-outlined" style="color: #c40303;">shopping_bag</span>
+                        </a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="https://web.facebook.com/andy.bernardo.50" style="color: #c40303;">Message</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <div class="product-image">
-          <img src="sources/images/chickenlollipop.jp" alt="Chicken Lollipop">
-          <h2>Chicken Lollipop</h2>
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <img src="sources/images/chickenlollipop.jpg" alt="Chicken Lollipop" class="img-fluid rounded shadow" style="max-height: 250px;">
+            <h2 class="mt-3 text-danger">Chicken Lollipop</h2>
         </div>
 
-        <div id="light">
-            <h2>Choose Which Bundle</h2>
-            <img src="sources/images/3light.png" alt="Light Meal">
-            <h3>Light Meal</h3>
-            <button onclick="selectBundle('3 Light Meals')">3 Light Meals</button>
-            <img src="sources/images/2light1heavy.png" alt="Light Meal">
-            <button onclick="selectBundle('2 Light 1 Heavy')">2 Light 1 Heavy</button>
-          </div>
-        </div>
-        <div id="heavy">
-            <img src="sources/images/3light.png" alt="Heavy Meal">
-            <h3>Heavy Meal</h3> 
-            <button onclick="selectBundle('3 Light Meals')">2 Heavy Meals</button>
-            <img src="sources/images/2light1heavy.png" alt="Heavy Meal">
-            <button onclick="selectBundle('2 Light 1 Heavy')">2 Light 1 Heavy</button>
-        </div>
+        <h3 class="text-center mb-4 text-danger">Choose Which Bundle</h3>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card shadow text-center">
+                    <img src="sources/images/3light.png" class="card-img-top p-3" alt="Light Meal">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger">Light Meal</h5>
+                        <button class="btn btn-light text-white w-100 mb-2" style="background-color: #f69494;" onclick="selectBundle('3 Light Meals')">3 Light Meals</button>
+                        <button class="btn btn-secondary w-100" onclick="selectBundle('2 Light 1 Heavy')">2 Light 1 Heavy</button>
+                    </div>
+                </div>
+            </div>
 
-        <div id="solid">
-            
+            <div class="col-md-6 mb-4">
+                <div class="card shadow text-center">
+                    <img src="sources/images/2light1heavy.png" class="card-img-top p-3" alt="Heavy Meal">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger">Heavy Meal</h5>
+                        <button class="btn btn-light text-white w-100 mb-2" style="background-color: #f69494;" onclick="selectBundle('2 Heavy Meals')">2 Heavy Meals</button>
+                        <button class="btn btn-secondary w-100" onclick="selectBundle('2 Light 1 Heavy')">2 Light 1 Heavy</button>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+
 </body>
 </html>
