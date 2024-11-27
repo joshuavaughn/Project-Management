@@ -9,7 +9,7 @@ let THEFOODORDERS = [];
 function fetchMenu(divID) {
     fetch(FULL_URL)
         .then(res => res.text())
-        .then(rep => {     
+        .then(rep => {        
             let data = JSON.parse(rep.substr(47).slice(0, -2));
             let card_container = document.getElementById(divID);
 
@@ -20,7 +20,7 @@ function fetchMenu(divID) {
 
             let num_row = data.table.rows.length;
 
-                for (let i = 0; i < num_row; i++) {
+            for (let i = 0; i < num_row; i++) {
                 let NewCard = document.createElement('div');
                 NewCard.id = "card" + i;
                 NewCard.className = "cards";
