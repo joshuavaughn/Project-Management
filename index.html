@@ -32,38 +32,33 @@
                 <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                     <li class="nav-item">
                         <a class="nav-link me-lg-3" href="checkout.html">
-                          <span class="material-symbols-outlined">shopping_bag</span>
-                        </a>
-                      </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="https://web.facebook.com/andy.bernardo.50">Message</a>
-                    </li>
-                </ul>
+            <span class="material-symbols-outlined" style="color: #c40303;">shopping_bag</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link me-lg-3" href="https://web.facebook.com/andy.bernardo.50" style="color: #c40303;">Message</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </nav>
+
+
+        <div id="background-image">
+            <img src="/sources/images/bg-img.jpg" alt="Background Image">
+            <div class="search-container">
+            <label for="search" class="search-label text-center">
+                <span class="material-symbols-outlined">search</span>
+            </label>
+            <input type="text" id="search" name="search" placeholder="Search..." required>
+            </div>
+        </div>     
+
+        <div id="On-Going-Orders">
+            <h1>On Going Order</h1>
+            <!--dito ilalagay yung cards ng mga foods-->
+            <div id="card-container"></div>
         </div>
-    </nav>
-
-
-    <div id="background-image">
-        <img src="/sources/images/bg-img.jpg" alt="Background Image">
-        <div class="search-container">
-          <label for="search" class="search-label text-center">
-            <span class="material-symbols-outlined">search</span>
-          </label>
-          <input type="text" id="search" name="search" placeholder="Search..." required>
-        </div>
-      </div>     
-
-    <div id="On-Going-Orders">
-        <h1>On Going Order</h1>
-        <!--dito ilalagay yung cards ng mga foods-->
-        <div id="card-container"></div>
-    </div>
-
-<div> blah blah blah</div>
-
-<div> blah blah blah - vaughn</div>
-
     <script>
         fetchMenu("On-Going-Orders");
     </script>
