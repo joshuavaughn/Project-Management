@@ -10,9 +10,9 @@
 <body>
     <div id="List">
         <h1>Choose Your Order</h1>
-        <h2>Light</h2>
+        <h2 id="light">Light</h2>
         <div id="light-checklist"></div>
-        <h2>Heavy</h2>
+        <h2 id="heavy">Heavy</h2>
         <div id="heavy-checklist"></div>
         <button onclick="submitOrder('submitOrder')" id="submitOrder">Submit Order</button>
     </div>
@@ -20,8 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/sources/jquery/jquery.nice-number.js"></script>
     <script>
-        fetchCheckboxes("light", "light-checklist", 2);
-        fetchCheckboxes("heavy", "heavy-checklist", 3);
+        bundle('light-1');
     </script>
 </body>
 </html>

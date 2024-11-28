@@ -6,64 +6,111 @@ let FULL_URL = ('https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq
 
 let THEFOODORDERS = [];
 
-function fetchMenu(divID) {
-    fetch(FULL_URL)
+let sheetData = null;
+
+// Fetch data from Google Sheets
+function fetchData() {
+    return fetch(FULL_URL)
         .then(res => res.text())
-        .then(rep => {        
-            let data = JSON.parse(rep.substr(47).slice(0, -2));
-            let card_container = document.getElementById(divID);
+        .then(rep => {
+            sheetData = JSON.parse(rep.substr(47).slice(0, -2)); // Store parsed data in sheetData
+            console.log("Data fetched successfully:", sheetData);
+        })
+        .catch(err => {
+            console.error("Error fetching data:", err);
+        });
+}
 
-            // Explicitly set grid layout on the container
-            card_container.style.display = 'grid';
-            card_container.style.gridTemplateColumns = 'repeat(2, 1fr)';
-            card_container.style.gap = '20px';
+async function fetchMenu(divID) {
+    // Wait for fetchData to complete
+    
+    if (!sheetData) {
+        await fetchData(); // Ensure data is fetched before proceeding
+    }
 
-            let num_row = data.table.rows.length;
+    if (!sheetData) {
+        console.error("Failed to load data.");
+        return;
+    }
 
-            for (let i = 0; i < num_row; i++) {
-                let NewCard = document.createElement('div');
-                NewCard.id = "card" + i;
-                NewCard.className = "cards";
+    let card_container = document.getElementById(divID);
 
-                NewCard.addEventListener('click', () => showFoodid(i, data));
+    // Explicitly set grid layout on the container
+    card_container.style.display = 'grid';
+    card_container.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    card_container.style.gap = '20px';
 
-                let food_name = document.createElement('div');
-                food_name.className = "food-name";
-                food_name.textContent = data.table.rows[i].c[1].v || "Unnamed Food";
+    let num_row = sheetData.table.rows.length;
 
-                let price = document.createElement('p');
-                price.textContent = data.table.rows[i].c[3].v || "Price not Available";
-                price.type = "text";
-                price.className = "text-box";
-                price.placeholder = "Price";
-                price.value = data.table.rows[i].c[3].v || "0.00";
+    for (let i = 0; i < num_row; i++) {
+        let NewCard = document.createElement('div');
+        NewCard.id = "card" + i;
+        NewCard.className = "cards";
 
-                let detail = document.createElement('p');
-                detail.textContent = data.table.rows[i].c[5].v || "No Details";
-                detail.className = "text-box";
-
-                let picture = document.createElement("img");
-                picture.src = 'sources/images/chickenlollipop.jpg'; 
-                picture.alt = data.table.rows[i].c[1].v || "Food Image";
-
-                let orderButton = document.createElement("button");
-                orderButton.className = "order-button";
-                orderButton.textContent = "Order Now";
-
-                NewCard.appendChild(picture);
-                NewCard.appendChild(food_name);
-                NewCard.appendChild(price);
-                NewCard.appendChild(detail);
-                NewCard.appendChild(orderButton);
-
-                card_container.appendChild(NewCard);
-            }
+        // Attach click listener to the card
+        NewCard.addEventListener('click', () => {
+            localStorage.setItem("index", i); // Set "index" when this card is clicked
+            showFoodid(i); // Call the function to handle the click
         });
 
-        function showFoodid(i, data, dat) {
-            food_id = data.table.rows[i].c[0].v;
-            alert("You clicked on " + food_id || "No Number Found");
-        }
+        let food_name = document.createElement('div');
+        food_name.className = "food-name";
+        food_name.textContent = sheetData.table.rows[i].c[1].v || "Unnamed Food";
+
+        let price = document.createElement('p');
+        price.textContent = sheetData.table.rows[i].c[3].v || "Price not Available";
+        price.type = "text";
+        price.className = "text-box";
+        price.placeholder = "Price";
+        price.value = sheetData.table.rows[i].c[3].v || "0.00";
+
+        let detail = document.createElement('p');
+        detail.textContent = sheetData.table.rows[i].c[5].v || "No Details";
+        detail.className = "text-box";
+
+        let picture = document.createElement("img");
+        picture.src = 'sources/images/chickenlollipop.jpg';
+        picture.alt = sheetData.table.rows[i].c[1].v || "Food Image";
+
+        let orderButton = document.createElement("button");
+        orderButton.className = "order-button";
+        orderButton.textContent = "Order Now";
+
+        NewCard.appendChild(picture);
+        NewCard.appendChild(food_name);
+        NewCard.appendChild(price);
+        NewCard.appendChild(detail);
+        NewCard.appendChild(orderButton);
+
+        card_container.appendChild(NewCard);
+    }
+
+    function showFoodid(x) {
+        window.location.href = "/order.html";
+        console.log(x);
+    }
+}
+
+async function setOrderPage() {
+    // Retrieve the value stored in "index"
+    let storedIndex = localStorage.getItem("index");
+
+    // Log it to the console
+    console.log("Stored index:", storedIndex);
+
+
+    if (!sheetData) {
+        await fetchData(); // Ensure data is fetched before proceeding
+    }
+
+    if (!sheetData) {
+        console.error("Failed to load data.");
+        return;
+    }
+
+    console.log("sheetdata:", sheetData);
+
+    document.getElementById("foodName").innerHTML = sheetData.table.rows[storedIndex].c[1].v;
 }
 
 let light_limit = -1;
@@ -198,4 +245,57 @@ function submitOrder(divID) {
     }
 
     console.log('Final Food Orders:', THEFOODORDERS.join(', ')); 
+}
+
+function checklist(bundle) {
+    localStorage.setItem("bundle", bundle);
+    //open bundle.html
+    console.log(bundle);
+    
+    window.location.href = "/bundle.html";
+
+    //display checklist
+    /*
+    if (bundle == "light-1" ) {
+        console.log("light-1");
+        fetchCheckboxes("light", "light-checklist", 3);
+    }
+    else if (bundle == "light-2" ) {
+        fetchCheckboxes("light", "light-checklist", 2);
+        fetchCheckboxes("heavy", "heavy-checklist", 1);
+    }
+    else if (bundle == "heavy-1" ) {
+        fetchCheckboxes("heavy", "light-checklist", 2);
+    }
+    else if (bundle == "heavy-2" ) {
+        fetchCheckboxes("light", "light-checklist", 2);
+        fetchCheckboxes("heavy", "heavy-checklist", 1);
+    }*/
+}
+
+function bundle() {
+    let show = document.getElementById('heavy');
+
+    let theBundle = localStorage.getItem("bundle");
+
+    if (theBundle == "light-1") {
+        show.style.display = 'none';
+        fetchCheckboxes("light", "light-checklist", 3);
+    }
+    else if (theBundle == "light-2" ) {
+        fetchCheckboxes("light", "light-checklist", 2);
+        fetchCheckboxes("heavy", "heavy-checklist", 1);
+    }
+    else if (theBundle == "heavy-1" ) {
+        fetchCheckboxes("heavy", "light-checklist", 2);
+    }
+    else if (theBundle == "heavy-2" ) {
+        fetchCheckboxes("light", "light-checklist", 2);
+        fetchCheckboxes("heavy", "heavy-checklist", 1);
+    }
+    else {
+        console.log('"theBundle" is invalid');
+    }
+
+    console.log('your in the bundle function');
 }

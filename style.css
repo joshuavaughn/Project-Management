@@ -574,34 +574,5 @@ text-align: left;
   }
 }
 
-/* *********
-before organization
-******/
-#order-tab {
-    background-color: black;
-}
 
-#order-tab h1 {
-    color: white;
-}
-
-.options{
-    background-color: lightgray;
-    height: 100px;
-    width: 100px;
-    margin: 10px;
-}
-
-.something {
-    display: flex;
-}
-
-#foodName {
-    height: 300px;
-    width: 300px;
-    background-color: black;
-}
-
-/******
-check out *****/
 
