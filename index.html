@@ -46,22 +46,69 @@
 
         <div id="background-image">
             <img src="/sources/images/bg-img.jpg" alt="Background Image">
-            <div class="search-container">
-            <label for="search" class="search-label text-center">
-                <span class="material-symbols-outlined">search</span>
-            </label>
-            <input type="text" id="search" name="search" placeholder="Search..." required>
-            </div>
-        </div>     
+            
 
-    <div id="On-Going-Orders">
-        <h1>On Going Order</h1>
-        <!--dito ilalagay yung cards ng mga foods-->
-        <div id="card-container"></div>
-    </div>
+    
+            
+        </div> 
+
+        <div id="search-section" class="container mt-5">
+            <div class="input-group mb-3">
+                <input 
+                    type="text" 
+                    id="searchBar" 
+                    class="form-control" 
+                    placeholder="Search for food..." 
+                    aria-label="Search for food" 
+                    aria-describedby="search-button">
+                <button 
+                    class="btn btn-danger" 
+                    type="button" 
+                    id="search-button"
+                    onclick="searchMenu()">
+                    Search
+                </button>
+            </div>
+        </div>
+        
+
+        <div id="On-Going-Orders" class="container mt-5">
+            <h1 class="text-center mb-4">On Going Order</h1>
+        
+            <ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="seafood-tab" data-bs-toggle="tab" data-bs-target="#seafood" type="button" role="tab" aria-controls="seafood" aria-selected="true">Seafood</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pork-tab" data-bs-toggle="tab" data-bs-target="#pork" type="button" role="tab" aria-controls="pork" aria-selected="false">Pork</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="chicken-tab" data-bs-toggle="tab" data-bs-target="#chicken" type="button" role="tab" aria-controls="chicken" aria-selected="false">Chicken</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pancit-tab" data-bs-toggle="tab" data-bs-target="#pancit" type="button" role="tab" aria-controls="pancit" aria-selected="false">Pancit</button>
+                </li>
+            </ul>
+        
+            <div class="tab-content" id="categoryTabsContent">
+                <div class="tab-pane fade show active" id="seafood" role="tabpanel" aria-labelledby="seafood-tab">
+                    <div id="card-container-seafood" class="row"></div>
+                </div>
+                <div class="tab-pane fade" id="pork" role="tabpanel" aria-labelledby="pork-tab">
+                    <div id="card-container-pork" class="row"></div>
+                </div>
+                <div class="tab-pane fade" id="chicken" role="tabpanel" aria-labelledby="chicken-tab">
+                    <div id="card-container-chicken" class="row"></div>
+                </div>
+                <div class="tab-pane fade" id="pancit" role="tabpanel" aria-labelledby="pancit-tab">
+                    <div id="card-container-pancit" class="row"></div>
+                </div>
+            </div>
+        </div>
+        
     
     <script>
-        fetchMenu("On-Going-Orders");
+        fetchMenu("card-container");
     </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>

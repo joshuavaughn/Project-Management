@@ -4,16 +4,13 @@ let SHEET_RANGE = 'A:G'
 
 let FULL_URL = ('https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?sheet=' + SHEET_TITLE + '&range=' + SHEET_RANGE);
 
-let THEFOODORDERS = [];
-
 let sheetData = null;
 
-// Fetch data from Google Sheets
 function fetchData() {
     return fetch(FULL_URL)
         .then(res => res.text())
         .then(rep => {
-            sheetData = JSON.parse(rep.substr(47).slice(0, -2)); // Store parsed data in sheetData
+            sheetData = JSON.parse(rep.substr(47).slice(0, -2));
             console.log("Data fetched successfully:", sheetData);
         })
         .catch(err => {
@@ -21,11 +18,24 @@ function fetchData() {
         });
 }
 
-async function fetchMenu(divID) {
-    // Wait for fetchData to complete
-    
+function searchMenu() {
+    const searchTerm = document.getElementById("searchBar").value.toLowerCase();
+    const allCards = document.querySelectorAll(".cards");
+
+    allCards.forEach(card => {
+        const foodName = card.querySelector(".food-name").textContent.toLowerCase();
+
+        if (foodName.includes(searchTerm)) {
+            card.style.display = "block"; // Show the card if it matches
+        } else {
+            card.style.display = "none"; // Hide the card if it doesn't match
+        }
+    });
+}
+
+async function fetchMenu() {
     if (!sheetData) {
-        await fetchData(); // Ensure data is fetched before proceeding
+        await fetchData();
     }
 
     if (!sheetData) {
@@ -33,61 +43,45 @@ async function fetchMenu(divID) {
         return;
     }
 
-    let card_container = document.getElementById(divID);
+    const categories = {
+        seafood: "card-container-seafood",
+        pork: "card-container-pork",
+        chicken: "card-container-chicken",
+        pancit: "card-container-pancit"
+    };
 
-    // Explicitly set grid layout on the container
-    card_container.style.display = 'grid';
-    card_container.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    card_container.style.gap = '20px';
+    for (let i = 0; i < sheetData.table.rows.length; i++) {
+        const row = sheetData.table.rows[i];
+        const category = row.c[4].v.toLowerCase();
+        const containerId = categories[category];
+        if (!containerId) continue;
 
-    let num_row = sheetData.table.rows.length;
+        const cardContainer = document.getElementById(containerId);
+        const card = document.createElement("div");
+        card.className = "cards";
 
-    for (let i = 0; i < num_row; i++) {
-        let NewCard = document.createElement('div');
-        NewCard.id = "card" + i;
-        NewCard.className = "cards";
-
-        // Attach click listener to the card
-        NewCard.addEventListener('click', () => {
-            localStorage.setItem("index", i); // Set "index" when this card is clicked
-            showFoodid(i); // Call the function to handle the click
+        card.addEventListener('click', () => {
+            localStorage.setItem("index", i); 
+            window.location.href = "/order.html";
         });
 
-        let food_name = document.createElement('div');
-        food_name.className = "food-name";
-        food_name.textContent = sheetData.table.rows[i].c[1].v || "Unnamed Food";
+        const foodName = document.createElement("div");
+        foodName.className = "food-name";
+        foodName.textContent = row.c[1].v || "Unnamed Food";
 
-        let price = document.createElement('p');
-        price.textContent = sheetData.table.rows[i].c[3].v || "Price not Available";
-        price.type = "text";
-        price.className = "text-box";
-        price.placeholder = "Price";
-        price.value = sheetData.table.rows[i].c[3].v || "0.00";
-
-        let detail = document.createElement('p');
-        detail.textContent = sheetData.table.rows[i].c[5].v || "No Details";
+        const detail = document.createElement("p");
         detail.className = "text-box";
+        detail.textContent = row.c[5].v || "Detail not Available";
 
-        let picture = document.createElement("img");
-        picture.src = 'sources/images/chickenlollipop.jpg';
-        picture.alt = sheetData.table.rows[i].c[1].v || "Food Image";
+        const picture = document.createElement("img");
+        picture.src = "sources/images/chickenlollipop.jpg"; // Placeholder image
+        picture.alt = row.c[1].v || "Food Image";
 
-        let orderButton = document.createElement("button");
-        orderButton.className = "order-button";
-        orderButton.textContent = "Order Now";
+        card.appendChild(picture);
+        card.appendChild(foodName);
+        card.appendChild(detail);
 
-        NewCard.appendChild(picture);
-        NewCard.appendChild(food_name);
-        NewCard.appendChild(price);
-        NewCard.appendChild(detail);
-        NewCard.appendChild(orderButton);
-
-        card_container.appendChild(NewCard);
-    }
-
-    function showFoodid(x) {
-        window.location.href = "/order.html";
-        console.log(x);
+        cardContainer.appendChild(card);
     }
 }
 
@@ -110,7 +104,76 @@ async function setOrderPage() {
 
     console.log("sheetdata:", sheetData);
 
+    //food title
     document.getElementById("foodName").innerHTML = sheetData.table.rows[storedIndex].c[1].v;
+    document.getElementById("price").innerHTML = `${sheetData.table.rows[storedIndex].c[3].v} 
+    <span id="pertub">${sheetData.table.rows[storedIndex].c[5].v}</span>`;
+
+
+    const heavy = document.getElementById('heavy');
+    const light = document.getElementById('light');
+
+    //options
+    if ("light" == sheetData.table.rows[storedIndex].c[2].v) {
+        heavy.style.display = 'none';
+    }
+    else if ("heavy" == sheetData.table.rows[storedIndex].c[2].v) {
+        light.style.display = 'none';
+    }
+}
+
+// Function to select a bundle
+function selectBundle(bundle) {
+    if ("light-1") {
+        alert(`you ordered: ${bundle}`);
+        localStorage.setItem("bundle", bundle); // Set "index" when this card is clicked
+        window.location.href = "/bundle.html";
+    }
+    else if ("light-2") {
+        alert(`you ordered: ${bundle}`);
+        localStorage.setItem("bundle", bundle); // Set "index" when this card is clicked
+        window.location.href = "/bundle.html";
+    }
+    else if ("heavy-1") {
+        alert(`you ordered: ${bundle}`);
+        localStorage.setItem("bundle", bundle); // Set "index" when this card is clicked
+        window.location.href = "/bundle.html";
+    }
+    else if ("heavy-2") {
+        alert(`you ordered: ${bundle}`);
+        localStorage.setItem("bundle", bundle); // Set "index" when this card is clicked
+        window.location.href = "/bundle.html";
+    }
+}
+
+// ******** Bundle Page ******** //
+function setBundlePage() {
+    const bundle = localStorage.getItem("bundle");
+
+    const heavy = document.getElementById('heavy');
+    const light = document.getElementById('light');
+
+    if (bundle == "light-1") {
+        heavy.style.display = 'none';
+        fetchCheckboxes("light", "light-checklist", 3);
+    }
+    else if (bundle == "light-2" ) {
+        fetchCheckboxes("light", "light-checklist", 2);
+        fetchCheckboxes("heavy", "heavy-checklist", 1);
+    }
+    else if (bundle == "heavy-1" ) {
+        light.style.display = 'none';
+        fetchCheckboxes("heavy", "heavy-checklist", 2);
+    }
+    else if (bundle == "heavy-2" ) {
+        fetchCheckboxes("light", "light-checklist", 2);
+        fetchCheckboxes("heavy", "heavy-checklist", 1);
+    }
+    else {
+        console.log('"theBundle" is invalid');
+    }
+
+    console.log('your in the bundle function');
 }
 
 let light_limit = -1;
@@ -188,17 +251,20 @@ function submitOrder(divID) {
     console.log('Heavy limit:', heavy_limit);
     console.log('Div ID:', divID);
 
+    let finalOrder = [];
+
     // Handle light category
     if (light_limit > -1) {
         const lightCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="light"]`);
+        //makes a array of the orders
         let checkedLightCheckboxes = Array.from(lightCheckboxes).filter(cb => cb.checked);
         const lightFoodOrders = [];
         
+        //consider the quantity of each checkbox
         checkedLightCheckboxes.forEach(cb => {
             const quantityInput = cb.parentElement.querySelector('input[type="number"]'); // Find the corresponding quantity input
             const quantity = parseInt(quantityInput.value, 10) || 0; // Parse the quantity (default to 0 if invalid)
 
-            // Add the checkbox value to the array `quantity` times
             for (let i = 0; i < quantity; i++) {
                 lightFoodOrders.push(cb.value);
             }
@@ -206,22 +272,27 @@ function submitOrder(divID) {
 
         const lightCheckedCount = lightFoodOrders.length;
 
+        //check for the minimum limit
         if (lightCheckedCount < light_limit) {
             alert(`You need to select at least ${light_limit} "light" options. Currently selected: ${lightCheckedCount}`);
             checkedLightCheckboxes = [];
         } else {
             console.log(`Light selection is valid. Currently selected: ${lightCheckedCount}`);
             console.log('Selected Values:', lightFoodOrders);
-            THEFOODORDERS = THEFOODORDERS.concat(lightFoodOrders);
+            finalOrder = finalOrder.concat(lightFoodOrders);
+            localStorage.setItem("orders", finalOrder);
+            window.location.href = "/orderlist.html";
         }
     }
     
     // Handle light category
     if (heavy_limit > -1) {
         const heavyCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="heavy"]`);
+        //makes a array of the orders
         let checkedHeavyCheckboxes = Array.from(heavyCheckboxes).filter(cb => cb.checked);
         const heavyFoodOrders = [];
         
+        //consider the quantity of each checkbox
         checkedHeavyCheckboxes.forEach(cb => {
             const HeavyquantityInput = cb.parentElement.querySelector('input[type="number"]'); // Find the corresponding quantity input
             const quantity = parseInt(HeavyquantityInput.value, 10) || 0; // Parse the quantity (default to 0 if invalid)
@@ -234,68 +305,28 @@ function submitOrder(divID) {
 
         const heavyCheckedCount = heavyFoodOrders.length;
 
+        //check for the minimum limit
         if (heavyCheckedCount < heavy_limit) {
             alert(`You need to select at least ${heavy_limit} "heavy" options. Currently selected: ${heavyCheckedCount}`);
             checkedHeavyCheckboxes = [];
         } else {
             console.log(`Heavy selection is valid. Currently selected: ${heavyCheckedCount}`);
             console.log('Selected Values:', heavyFoodOrders);
-            THEFOODORDERS = THEFOODORDERS.concat(heavyFoodOrders);
+            finalOrder = finalOrder.concat(heavyFoodOrders);
+            localStorage.setItem("orders", finalOrder);
+            window.location.href = "/orderlist.html";
         }
     }
 
-    console.log('Final Food Orders:', THEFOODORDERS.join(', ')); 
+    console.log('Final Food Orders:', finalOrder.join(', ')); 
 }
 
-function checklist(bundle) {
-    localStorage.setItem("bundle", bundle);
-    //open bundle.html
-    console.log(bundle);
-    
-    window.location.href = "/bundle.html";
-
-    //display checklist
-    /*
-    if (bundle == "light-1" ) {
-        console.log("light-1");
-        fetchCheckboxes("light", "light-checklist", 3);
-    }
-    else if (bundle == "light-2" ) {
-        fetchCheckboxes("light", "light-checklist", 2);
-        fetchCheckboxes("heavy", "heavy-checklist", 1);
-    }
-    else if (bundle == "heavy-1" ) {
-        fetchCheckboxes("heavy", "light-checklist", 2);
-    }
-    else if (bundle == "heavy-2" ) {
-        fetchCheckboxes("light", "light-checklist", 2);
-        fetchCheckboxes("heavy", "heavy-checklist", 1);
-    }*/
+// ******** Order List Page ******** //
+function setOrderListPage() {
+    const order = localStorage.getItem("orders");
+    console.log(order);
 }
 
-function bundle() {
-    let show = document.getElementById('heavy');
-
-    let theBundle = localStorage.getItem("bundle");
-
-    if (theBundle == "light-1") {
-        show.style.display = 'none';
-        fetchCheckboxes("light", "light-checklist", 3);
-    }
-    else if (theBundle == "light-2" ) {
-        fetchCheckboxes("light", "light-checklist", 2);
-        fetchCheckboxes("heavy", "heavy-checklist", 1);
-    }
-    else if (theBundle == "heavy-1" ) {
-        fetchCheckboxes("heavy", "light-checklist", 2);
-    }
-    else if (theBundle == "heavy-2" ) {
-        fetchCheckboxes("light", "light-checklist", 2);
-        fetchCheckboxes("heavy", "heavy-checklist", 1);
-    }
-    else {
-        console.log('"theBundle" is invalid');
-    }
-
-    console.log('your in the bundle function');
+function placeOrder() {
+    window.location.href = "/checkout.html";
 }
