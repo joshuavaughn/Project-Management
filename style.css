@@ -274,67 +274,67 @@ height: 100%;
                     PART 4
 *************************************************/
 
-/*nav*/
 .header {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 10px;
-  padding-left: 50px;
-  background-color:#f69494;
-  margin-top: 0%;
-  background-image: url('/sources/images/header.png'); 
-  background-size:cover;
+  padding: 10px 50px;
+  background-color: #f69494;
+  background-image: url('/sources/images/bg-img.jpg'); 
+  background-size: cover;
   background-repeat: no-repeat; 
-  height: 120px; 
+  height: 120px;
 }
 
 .logo-search {
   display: flex;
   align-items: center;
-  gap: 100%;
+  gap: 350px; 
 }
 
 .logo {
   width: 120px;
   height: auto;
+  padding-top: 20px;
 }
 
 .search-container {
   position: relative;
-  width: 100%;
-  max-width: 100%;
+  width: 400px; 
 }
 
 .search-input {
-  padding-bottom: 10px;
+  padding: 10px 15px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 25px;
-  width: 100%;
+  width: 100%; /* Adjusted to fit the container */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fffffff3;
+}
+
+.search-input::placeholder {
+  color: #ff7777; /* Subtle placeholder color */
 }
 
 .search-button {
   position: absolute;
-  right: 15px;
+  right: 10px; /* Spacing adjusted */
   top: 50%;
   transform: translateY(-50%);
   border: none;
   background: transparent;
   cursor: pointer;
-  color: #ff0000;
+  color: #ff4500;
 }
 
 .search-icon {
-  font-size: 20px;
+  font-size: 18px; /* Adjusted size for better fit */
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
-  padding-right: 70px;
-  padding-bottom: 15px;
+  gap: 30px;
 }
 
 .nav-links a {
@@ -347,6 +347,7 @@ height: 100%;
 .nav-links a:hover {
   color: #ff4500;
 }
+
 
 /*check out form*/
 .form-container {
@@ -454,35 +455,33 @@ height: 100%;
 	border-radius: 8px;
 }
 	
-	&:focus-within {
+&:focus-within {
 		border-color: #cccccc;
     align-items: center;
-	}
+}
   
 	
-	input {
-		font: inherit;
-		color: inherit;
-		appearance: none;
-		outline: none;
-		border: 0;
-		background-color: transparent;
+input {
+	font: inherit;
+	color: inherit;
+	appearance: none;
+	outline: none;
+	border: 0;
+	background-color: transparent;
+}
+
+&[type=date] {
+		width: 10rem;
+		padding: .40rem .5rem .25rem 0;
+		padding-left: 20px;
   }
-
-    &[type=date] {
-			width: 10rem;
-			padding: .40rem .5rem .25rem 0;
-			padding-left: 20px;
-      margin-bottom: ;
-
-		}
 		
-		&[type=time] {
-			width: 10rem;
-			padding: .40rem .5rem .25rem 0;
-			border-left-width: 0;
-      padding-left: 20px;
-    }
+&[type=time] {
+		width: 10rem;
+		padding: .40rem .5rem .25rem 0;
+		border-left-width: 0;
+    padding-left: 20px;
+  }
 
 .info {
 	padding-top: .5rem;
@@ -492,8 +491,8 @@ height: 100%;
 
 /*place order button*/
 
-.place-order-button {
-  background-color: #ff2424; /* Green */
+.submit-button {
+  background-color: #ff2424; 
   color: white;
   padding: 10px 20px;
   font-size: 16px;
@@ -503,10 +502,9 @@ height: 100%;
   transition: background-color 0.3s ease;
 }
 
-.place-order-button:hover {
-  background-color: #ff9a9a; /* Darker green on hover */
+.submit-button:hover {
+  background-color: #ff9a9a; 
 }
-
 
 /*reciept*/
 
